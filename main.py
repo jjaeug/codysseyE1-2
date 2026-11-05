@@ -130,6 +130,17 @@ class QuizGame:
         self.save_data()
 
         print("새 퀴즈가 추가되었습니다.")
+    def reset_score(self):
+        print("\n=== 점수 초기화 ===")
+
+        confirm = input("정말 점수를 초기화하시겠습니까? (y/n): ").strip().lower()
+
+        if confirm == "y":
+            self.score = 0
+            self.save_data()
+            print("점수가 0점으로 초기화되었습니다.")
+        else:
+            print("점수 초기화를 취소했습니다.")
     def show_menu(self):
         while True:
             try:
@@ -137,7 +148,8 @@ class QuizGame:
                 print("1. 퀴즈 풀기")
                 print("2. 점수 보기")
                 print("3. 퀴즈 추가")
-                print("4. 종료")
+                print("4. 점수 초기화")
+                print("5. 종료")
 
                 choice = input("메뉴 선택: ")
 
@@ -148,10 +160,12 @@ class QuizGame:
                 elif choice == "3":
                     self.add_quiz()
                 elif choice == "4":
+                    self.reset_score()
+                elif choice == "5":
                     print("게임을 종료합니다.")
                     break
                 else:
-                    print("1, 2, 3, 4 중에서 선택하세요.")
+                    print("1, 2, 3, 4, 5 중에서 선택하세요.")
 
             except KeyboardInterrupt:
                 print("\n사용자가 프로그램을 종료했습니다.")
