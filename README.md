@@ -11,3 +11,40 @@ Python 기초 문법을 복습하기 위해 파이썬 기본 문법을 주제로
 ## 실행 방법
 ```bash
 py main.py
+
+## 기능 목록
+객관식 퀴즈 풀기
+퀴즈 추가
+퀴즈 목록 보기
+최고 점수 확인
+최고 점수 초기화
+잘못된 숫자 입력 처리
+state.json 파일 저장 및 불러오기
+
+## 파일 구조
+프로젝트 폴더/
+├── main.py
+├── state.json
+├── README.md
+└── .gitignore
+
+## 데이터 파일 설명
+데이터는 프로젝트 루트의 state.json 파일에 저장됩니다.
+데이터 파일의 내용
+{
+    "best_score": 3,
+    "quizzes": [
+        {
+            "question": "파이썬에서 출력할 때 사용하는 함수는?",
+            "choices": ["print", "input", "len", "type"],
+            "answer": 1
+        }
+    ]
+}
+
+## 필드 설명
+best_score: 최고 점수
+quizzes: 퀴즈 목록
+question: 문제 내용
+choices: 4개의 선택지
+answer: 정답 번호, 1부터 4까지의 숫자
