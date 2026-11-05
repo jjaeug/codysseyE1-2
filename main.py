@@ -141,39 +141,43 @@ class QuizGame:
             print("점수가 0점으로 초기화되었습니다.")
         else:
             print("점수 초기화를 취소했습니다.")
+    def show_quizzes(self):
+        print("\n=== 퀴즈 목록 ===")
+
+        if not self.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        for index, quiz in enumerate(self.quizzes, start=1):
+            print(f"{index}. {quiz.question}")
+            print(f"   정답: {quiz.answer}")
     def show_menu(self):
         while True:
-            try:
-                print("\n=== 콘솔 퀴즈 게임 ===")
-                print("1. 퀴즈 풀기")
-                print("2. 점수 보기")
-                print("3. 퀴즈 추가")
-                print("4. 점수 초기화")
-                print("5. 종료")
+            print("\n=== 콘솔 퀴즈 게임 ===")
+            print("1. 퀴즈 풀기")
+            print("2. 점수 보기")
+            print("3. 퀴즈 추가")
+            print("4. 점수 초기화")
+            print("5. 퀴즈 목록 보기")
+            print("6. 종료")
 
-                choice = input("메뉴 선택: ")
+            choice = input("메뉴를 선택하세요: ")
 
-                if choice == "1":
-                    self.play_quiz()
-                elif choice == "2":
-                    self.show_score()
-                elif choice == "3":
-                    self.add_quiz()
-                elif choice == "4":
-                    self.reset_score()
-                elif choice == "5":
-                    print("게임을 종료합니다.")
-                    break
-                else:
-                    print("1, 2, 3, 4, 5 중에서 선택하세요.")
-
-            except KeyboardInterrupt:
-                print("\n사용자가 프로그램을 종료했습니다.")
+            if choice == "1":
+                self.play_quiz()
+            elif choice == "2":
+                self.show_score()
+            elif choice == "3":
+                self.add_quiz()
+            elif choice == "4":
+                self.reset_score()
+            elif choice == "5":
+                self.show_quizzes()
+            elif choice == "6":
+                print("게임을 종료합니다.")
                 break
-
-            except EOFError:
-                print("\n입력이 종료되었습니다.")
-                break
+            else:
+                print("1, 2, 3, 4, 5, 6 중에서 선택하세요.")
 
 
 def main():
@@ -182,4 +186,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n게임을 종료합니다.")
+    except EOFError:
+        print("\n입력이 종료되었습니다.")
