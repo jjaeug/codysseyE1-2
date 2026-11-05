@@ -115,14 +115,29 @@ class QuizGame:
 
     def show_score(self):
         print(f"\n현재 누적 점수는 {self.score}점입니다.")
+    def add_quiz(self):
+        print("\n=== 퀴즈 추가 ===")
 
+        question = input("문제를 입력하세요: ").strip()
+        answer = input("정답을 입력하세요: ").strip()
+
+        if question == "" or answer == "":
+            print("문제와 정답은 비워둘 수 없습니다.")
+            return
+
+        new_quiz = Quiz(question, answer)
+        self.quizzes.append(new_quiz)
+        self.save_data()
+
+        print("새 퀴즈가 추가되었습니다.")
     def show_menu(self):
         while True:
             try:
                 print("\n=== 콘솔 퀴즈 게임 ===")
                 print("1. 퀴즈 풀기")
                 print("2. 점수 보기")
-                print("3. 종료")
+                print("3. 퀴즈 추가")
+                print("4. 종료")
 
                 choice = input("메뉴 선택: ")
 
@@ -131,10 +146,12 @@ class QuizGame:
                 elif choice == "2":
                     self.show_score()
                 elif choice == "3":
+                    self.add_quiz()
+                elif choice == "4":
                     print("게임을 종료합니다.")
                     break
                 else:
-                    print("1, 2, 3 중에서 선택하세요.")
+                    print("1, 2, 3, 4 중에서 선택하세요.")
 
             except KeyboardInterrupt:
                 print("\n사용자가 프로그램을 종료했습니다.")
