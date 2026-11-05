@@ -1,0 +1,55 @@
+{
+    "best_score": 5,
+    "quizzes": [
+        {
+            "question": "파이썬에서 출력할 때 사용하는 함수는?",
+            "choices": [
+                "print",
+                "input",
+                "len",
+                "type"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "리스트를 만들 때 사용하는 괄호는?",
+            "choices": [
+                "()",
+                "{}",
+                "[]",
+                "<>"
+            ],
+            "answer": 3
+        },
+        {
+            "question": "조건문에 사용하는 키워드는?",
+            "choices": [
+                "for",
+                "if",
+                "def",
+                "class"
+            ],
+            "answer": 2
+        },
+        {
+            "question": "반복문 중 정해진 범위를 반복할 때 자주 쓰는 키워드는?",
+            "choices": [
+                "for",
+                "if",
+                "try",
+                "return"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "파이썬에서 함수를 정의할 때 사용하는 키워드는?",
+            "choices": [
+                "class",
+                "def",
+                "import",
+                "while"
+            ],
+            "answer": 2
+        }
+    ]
+}
