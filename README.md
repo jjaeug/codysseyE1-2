@@ -48,3 +48,8 @@ quizzes: 퀴즈 목록
 question: 문제 내용
 choices: 4개의 선택지
 answer: 정답 번호, 1부터 4까지의 숫자
+
+## 개발 환경
+- Python 3.10 이상
+- 외부 라이브러리 사용 없음
+- 데이터 저장 파일: state.json
