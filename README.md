@@ -28,7 +28,13 @@ state.json 파일 저장 및 불러오기
 ├── main.py
 ├── state.json
 ├── README.md
-└── .gitignore
+├── .gitignore
+└── docs/
+    └── screenshots/
+        ├── menu.png
+        ├── play.png
+        ├── add_quiz.png
+        └── score.png
 ```
 ## 데이터 파일 설명
 ```
@@ -53,6 +59,20 @@ question: 문제 내용
 choices: 4개의 선택지
 answer: 정답 번호, 1부터 4까지의 숫자
 ```
+## 실행 화면
+
+### 메인 메뉴 화면
+![메인 메뉴 화면](./docs/screenshots/menu.png)
+
+### 퀴즈 풀이 화면
+![퀴즈 풀이 화면](./docs/screenshots/play.png)
+
+### 퀴즈 추가 화면
+![퀴즈 추가 화면](./docs/screenshots/add_quiz.png)
+
+### 최고 점수 화면
+![최고 점수 화면](./docs/screenshots/score.png)
+
 ## 개발 환경
 ```
 - Python 3.15.2 
