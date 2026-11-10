@@ -44,11 +44,16 @@ state.json 파일 저장 및 불러오기
 데이터는 프로젝트 루트의 state.json 파일에 저장됩니다.
 데이터 파일의 내용
 {
-    "best_score": 3,
+    "best_score": 5,
     "quizzes": [
         {
             "question": "파이썬에서 출력할 때 사용하는 함수는?",
-            "choices": ["print", "input", "len", "type"],
+            "choices": [
+                "print",
+                "input",
+                "len",
+                "type"
+            ],
             "answer": 1
         }
     ]
