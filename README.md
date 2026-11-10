@@ -34,7 +34,10 @@ state.json 파일 저장 및 불러오기
         ├── menu.png
         ├── play.png
         ├── add_quiz.png
-        └── score.png
+        ├── quiz_list.png
+        ├── score.png
+        ├── dev_environment.png
+        └── git_log_graph.png
 ```
 ## 데이터 파일 설명
 ```
@@ -64,6 +67,9 @@ answer: 정답 번호, 1부터 4까지의 숫자
 ### 메인 메뉴 화면
 ![메인 메뉴 화면](./docs/screenshots/menu.png)
 
+### 퀴즈 목록 화면
+![퀴즈 목록 화면](./docs/screenshots/quiz_list.png)
+
 ### 퀴즈 풀이 화면
 ![퀴즈 풀이 화면](./docs/screenshots/play.png)
 
@@ -80,5 +86,14 @@ answer: 정답 번호, 1부터 4까지의 숫자
 - 데이터 저장 파일: state.json
 ```
 
-## 제출 전 확인
-프로그램 실행, 데이터 저장, README 문서 작성을 확인했습니다.
+## 제출 정보
+
+### GitHub 저장소 URL
+https://github.com/jjaeug/codysseyE1-2
+
+### 개발 환경 설정 스크린샷
+![개발 환경 설정](./docs/screenshots/dev_environment.png)
+
+### git log
+![git log graph](./docs/screenshots/git_log_graph.png)
+
