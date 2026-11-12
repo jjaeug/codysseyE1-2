@@ -92,6 +92,7 @@ answer: 정답 번호, 1부터 4까지의 숫자
 ```
 ## Git 실습 기록
 - (clone/pull 실습)
+![pull 실습 결과](./docs/screenshots/1.png)
 
 ## 제출 정보
 
