@@ -26,8 +26,8 @@ class QuizGame:
         self.best_score = 0
         self.load_data()
 
-    def create_default_data(self):
-        default_data = {
+    def get_default_data(self):
+        return {
             "best_score": 0,
             "quizzes": [
                 {
@@ -58,43 +58,72 @@ class QuizGame:
             ]
         }
 
-        with open(DATA_FILE, "w", encoding="utf-8") as file:
-            json.dump(default_data, file, ensure_ascii=False, indent=4)
+    def build_quiz(self, item):
+        if not isinstance(item, dict):
+            raise ValueError("퀴즈 항목이 객체가 아닙니다.")
+
+        question = item["question"]
+        choices = item["choices"]
+        answer = item["answer"]
+
+        if not isinstance(question, str) or question.strip() == "":
+            raise ValueError("question이 비어 있거나 문자열이 아닙니다.")
+
+        if not isinstance(choices, list) or len(choices) != 4:
+            raise ValueError("choices는 4개여야 합니다.")
+
+        for choice in choices:
+            if not isinstance(choice, str) or choice.strip() == "":
+                raise ValueError("choices에 비어 있거나 문자열이 아닌 값이 있습니다.")
+
+        if isinstance(answer, bool) or not isinstance(answer, int) or not 1 <= answer <= 4:
+            raise ValueError("answer는 1~4 사이의 정수여야 합니다.")
+
+        return Quiz(question, choices, answer)
+
+    def parse_data(self, data):
+        if not isinstance(data, dict):
+            raise ValueError("최상위 데이터가 객체가 아닙니다.")
+
+        best_score = data["best_score"]
+        quiz_items = data["quizzes"]
+
+        if isinstance(best_score, bool) or not isinstance(best_score, int) or best_score < 0:
+            raise ValueError("best_score는 0 이상의 정수여야 합니다.")
+
+        if not isinstance(quiz_items, list):
+            raise ValueError("quizzes는 목록이어야 합니다.")
+
+        quizzes = [self.build_quiz(item) for item in quiz_items]
+        return best_score, quizzes
+
+    def reset_to_default(self):
+        self.best_score, self.quizzes = self.parse_data(self.get_default_data())
+        self.save_data()
 
     def load_data(self):
-        try:
-            if not os.path.exists(DATA_FILE):
-                self.create_default_data()
+        if not os.path.exists(DATA_FILE):
+            print("데이터 파일이 없어 기본 퀴즈 데이터로 시작합니다.")
+            self.reset_to_default()
+            return
 
+        try:
             with open(DATA_FILE, "r", encoding="utf-8") as file:
                 data = json.load(file)
 
-            self.best_score = data["best_score"]
-            self.quizzes = [
-                Quiz(item["question"], item["choices"], item["answer"])
-                for item in data["quizzes"]
-            ]
-
-        except FileNotFoundError:
-            print("데이터 파일을 찾을 수 없어 새로 생성합니다.")
-            self.create_default_data()
-            self.load_data()
+            self.best_score, self.quizzes = self.parse_data(data)
 
         except json.JSONDecodeError:
-            print("JSON 파일 형식이 잘못되었습니다. 데이터를 초기화합니다.")
-            self.create_default_data()
-            self.load_data()
+            print("JSON 파일 형식이 잘못되었습니다. 기본 데이터로 복구합니다.")
+            self.reset_to_default()
 
-        except KeyError:
-            print("JSON 데이터에 필요한 키가 없습니다. 데이터를 초기화합니다.")
-            self.create_default_data()
-            self.load_data()
+        except (KeyError, TypeError, ValueError) as error:
+            print(f"데이터 내용이 올바르지 않습니다({error!r}). 기본 데이터로 복구합니다.")
+            self.reset_to_default()
 
-        except PermissionError:
-            print("파일 접근 권한이 없습니다.")
-
-        except Exception as error:
-            print("알 수 없는 오류가 발생했습니다:", error)
+        except OSError:
+            print("데이터 파일을 읽을 수 없어 기본 퀴즈 데이터로 실행합니다.")
+            self.best_score, self.quizzes = self.parse_data(self.get_default_data())
 
     def save_data(self):
         try:
