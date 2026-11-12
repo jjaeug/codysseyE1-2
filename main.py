@@ -168,16 +168,6 @@ class QuizGame:
             except ValueError:
                 print("숫자를 입력하세요.")
 
-            except KeyboardInterrupt:
-                print("\n입력이 중단되었습니다. 저장 후 종료합니다.")
-                self.save_data()
-                raise
-
-            except EOFError:
-                print("\n입력이 종료되었습니다. 저장 후 종료합니다.")
-                self.save_data()
-                raise
-
     def input_text(self, message):
         while True:
             value = input(message).strip()
@@ -296,13 +286,16 @@ class QuizGame:
 
 def main():
     game = QuizGame()
-    game.show_menu()
+
+    try:
+        game.show_menu()
+    except KeyboardInterrupt:
+        print("\n입력이 중단되었습니다(Ctrl+C). 저장 후 안전하게 종료합니다.")
+        game.save_data()
+    except EOFError:
+        print("\n입력 스트림이 종료되었습니다. 저장 후 안전하게 종료합니다.")
+        game.save_data()
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\n게임을 종료합니다.")
-    except EOFError:
-        print("\n입력이 종료되었습니다.")
+    main()
