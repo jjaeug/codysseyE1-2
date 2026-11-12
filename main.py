@@ -149,6 +149,16 @@ class QuizGame:
                 self.save_data()
                 raise
 
+    def input_text(self, message):
+        while True:
+            value = input(message).strip()
+
+            if value == "":
+                print("빈 입력은 사용할 수 없습니다. 다시 입력하세요.")
+                continue
+
+            return value
+
     def play_quiz(self):
         if len(self.quizzes) == 0:
             print("등록된 퀴즈가 없습니다.")
@@ -187,22 +197,12 @@ class QuizGame:
     def add_quiz(self):
         print("\n=== 퀴즈 추가 ===")
 
-        question = input("문제를 입력하세요: ").strip()
-
-        if question == "":
-            print("문제는 비워둘 수 없습니다.")
-            return
+        question = self.input_text("문제를 입력하세요: ")
 
         choices = []
 
         for i in range(1, 5):
-            choice = input(f"선택지 {i}: ").strip()
-
-            if choice == "":
-                print("선택지는 비워둘 수 없습니다.")
-                return
-
-            choices.append(choice)
+            choices.append(self.input_text(f"선택지 {i}: "))
 
         answer = self.input_number("정답 번호를 입력하세요(1-4): ", 1, 4)
 
